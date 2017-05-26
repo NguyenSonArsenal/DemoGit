@@ -3,9 +3,16 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use controller\C_Index;
+use model\M_Users;
+
+// $xxx = new M_Users();
+// $xxx->dangKi("Son1", "vanson1.nguyen@gmail.com","1");die;
 
 $c_index = new C_Index();
+
 $menuContent = $c_index->index();
+
+// var_dump($menuContent);die;
 
 ?>
 
@@ -49,7 +56,6 @@ $menuContent = $c_index->index();
 					    <div class="row-item row">
                             <?php foreach ($menuContent as $mn): ?>
     		                	<h3>
-                                    <?php //var_dump($mn);die; ?>
                                     <a href="#"><?php echo $mn['Ten'] ?></a> |
     		                		
                                     <?php $loaitin = explode(',' , $mn['LOAITIN']); // array ?>
@@ -64,14 +70,14 @@ $menuContent = $c_index->index();
 
     		                	<div class="col-md-12 border-right">
     		                		<div class="col-md-3">
-    			                        <a href="chitiet.html">
-    			                            <img class="img-responsive" src="public/image/tintuc/<?php echo $mn['HinhTin'] ?>" alt="">
+    			                        <a href="chitiet.php?idTin=<?php echo $mn['idTin'] ?>&loaitin=<?php echo $TenKhongDau?>">
+    			                            <img class="img-responsive" src="public/image/tintuc/<?php echo $mn['HinhTin'] ?>" alt="name image">
     			                        </a>
     			                    </div>
     			                    <div class="col-md-9">
     			                        <h3><?php echo $mn['TieuDeTin'] ?></h3>
     			                        <p><?php echo $mn['TomTatTin'] ?></p>
-    			                        <a class="btn btn-primary" href="chitiet.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+    			                        <a class="btn btn-primary" href="chitiet.php?idTin=<?php echo $mn['idTin'] ?>&loaitin=<?php echo $TenKhongDau?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
     								</div>
     		                	</div>
 							    <div class="break"></div>

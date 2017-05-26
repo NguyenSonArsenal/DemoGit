@@ -3,6 +3,7 @@
 namespace controller;
 
 use model\M_Index;
+use model\Pagination;
 use view\View;
 
 
@@ -41,12 +42,62 @@ class C_Index
 		$idLoaiTin = $_GET['idLoaiTin'];
 		$mIndex = new M_Index();
 		
-		$danhMucTin = $mIndex->getTinTucByIdLoaiTin($idLoaiTin);
+		$danhMucTin = $mIndex->getTinTucByIdLoaiTin($idLoaiTin);//array
+		//var_dump(count($danhMucTin));die;
 
 		$titleLoaiTin = $mIndex->getTitleById($idLoaiTin);
 
-		return array('danhmuctin' => $danhMucTin, 'titleLoaiTin' => $titleLoaiTin );
+		// Phan trang
+		$pageCurrent = isset($_GET['page']) ? $_GET['page'] : 1;
+
+		$paper = new Pagination( count($danhMucTin), $pageCurrent, 4, 4 );
+
+		// call thanh paper
+		$paperHTML = $paper->showPagination(); 
+
+		$limit = $paper->_nItemOnPage;
+		$vitri = ($pageCurrent -1 )*$limit;
+
+		$danhMucTin = $mIndex->getTinTucByIdLoaiTin($idLoaiTin, $vitri, $limit );
+
+		return array('danhmuctin' => $danhMucTin, 
+					 'titleLoaiTin' => $titleLoaiTin, 
+					 'paperHTML' => $paperHTML );
 	}
+
+
+	function tinChiTiet()
+	{
+		$idTin = $_GET['idTin'];
+		$mIndex = new M_Index();
+
+		$tinChiTiet = $mIndex->getTinChiTiet($idTin);
+
+		$comment = $mIndex->getComment($idTin);
+
+		return array('tinChiTiet' => $tinChiTiet, 'comment' => $comment );
+	}
+
+	function relatedNews()
+	{
+		$loaitin = $_GET['loaitin'];
+		$mIndex = new M_Index();
+
+		$relatedNews = $mIndex->getRelatedNews($loaitin);
+
+		return array('relatedNews' => $relatedNews);
+	}
+
+	function tinNoiBat()
+	{
+		$mIndex = new M_Index();
+
+		$tinNoiBat = $mIndex->getTinNoiBat();
+
+		return array('tinNoiBat' => $tinNoiBat);
+	}
+
+	
 
 	function run()
 	{

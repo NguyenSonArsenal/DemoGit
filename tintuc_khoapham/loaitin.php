@@ -5,11 +5,20 @@ require_once __DIR__ . '/vendor/autoload.php';
 use controller\C_Index;
 
 $c_index = new C_Index();
+
+$menuContent = $c_index->index();
+
+ // var_dump($menuContent);die;
+
 $loaitins = $c_index->loaiTin(); // array
 
 $tins = $loaitins['danhmuctin']; // array
 
+//var_dump($tins);die;
+
 $titleLoaiTin =  $loaitins['titleLoaiTin']; // array
+
+$paperHTML = $loaitins['paperHTML']; // string
 
 ?>
 
@@ -46,55 +55,34 @@ $titleLoaiTin =  $loaitins['titleLoaiTin']; // array
                         </b></h4>
                     </div>
 
-                <?php foreach ($tins as $tin): ?>
+                    <?php foreach ($tins as $tin): ?>
                     
                     <div class="row-item row">
+                    
                         <div class="col-md-3">
-                            <a href="detail.html">
+                        
+                            <a href="chitiet.php?idTin=<?php echo $tin['id'] ?>&loaitin=<?php echo $tin['TenKhongDau']?>">
                                 <br>
                                 <img width="200px" height="200px" class="img-responsive" src="public/image/tintuc/<?php echo $tin['Hinh'] ?>" alt="">
                             </a>
                         </div>
+                         
 
                         <div class="col-md-9">
                             <h3><?php echo $tin['TieuDe'] ?></h3>
                             <p><?php echo $tin['TomTat'] ?></p>
-                            <a class="btn btn-primary" href="detail.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+                            <a class="btn btn-primary" href="chitiet.php?idTin=<?php echo $tin['id'] ?>&loaitin=<?php echo $tin['TenKhongDau']?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
                         </div>
+
+                      
                         <div class="break"></div>
                     </div>
 
-                <?php endforeach ?>
+                    <?php endforeach ?>
 
-                    <!-- Pagination -->
                     <div class="row text-center">
-                        <div class="col-lg-12">
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#">&laquo;</a>
-                                </li>
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li>
-                                    <a href="#">5</a>
-                                </li>
-                                <li>
-                                    <a href="#">&raquo;</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <?php echo $paperHTML ?> 
                     </div>
-                    <!-- /.row -->
 
                 </div>
             </div> 
