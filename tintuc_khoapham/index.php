@@ -4,11 +4,15 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use controller\C_Index;
 use model\M_Users;
+use model\M_Index;
 
-// $xxx = new M_Users();
-// $xxx->dangKi("Son1", "vanson1.nguyen@gmail.com","1");die;
+// $xxx = new M_Index();
+// $kp = $xxx->search('FPT');
+// var_dump($kp);die;
 
 $c_index = new C_Index();
+// $kp = $c_index->c_search('FPT');
+// var_dump($kp);die;
 
 $menuContent = $c_index->index();
 
@@ -55,6 +59,7 @@ $menuContent = $c_index->index();
 	            		<!-- item -->
 					    <div class="row-item row">
                             <?php foreach ($menuContent as $mn): ?>
+                                <?php //var_dump($mn);die; ?>
     		                	<h3>
                                     <a href="#"><?php echo $mn['Ten'] ?></a> |
     		                		
@@ -70,14 +75,14 @@ $menuContent = $c_index->index();
 
     		                	<div class="col-md-12 border-right">
     		                		<div class="col-md-3">
-    			                        <a href="chitiet.php?idTin=<?php echo $mn['idTin'] ?>&loaitin=<?php echo $TenKhongDau?>">
+    			                        <a href="chitiet.php?loaitin=<?php echo $TenKhongDau?>&alias=<?php echo $mn['TieuDeTinKhongDau'] ?>&idTin=<?php echo $mn['idTin'] ?>">
     			                            <img class="img-responsive" src="public/image/tintuc/<?php echo $mn['HinhTin'] ?>" alt="name image">
     			                        </a>
     			                    </div>
     			                    <div class="col-md-9">
     			                        <h3><?php echo $mn['TieuDeTin'] ?></h3>
     			                        <p><?php echo $mn['TomTatTin'] ?></p>
-    			                        <a class="btn btn-primary" href="chitiet.php?idTin=<?php echo $mn['idTin'] ?>&loaitin=<?php echo $TenKhongDau?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+    			                        <a class="btn btn-primary" href="chitiet.php?loaitin=<?php echo $TenKhongDau?>&alias=<?php echo $mn['TieuDeTinKhongDau'] ?>&idTin=<?php echo $mn['idTin'] ?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
     								</div>
     		                	</div>
 							    <div class="break"></div>

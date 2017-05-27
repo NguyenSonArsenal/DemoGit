@@ -38,13 +38,14 @@ $paperHTML = $loaitins['paperHTML']; // string
     <!-- Navigation -->
     <?php require_once('public/includes/navbar.php'); ?>
 
+   
     <!-- Page Content -->
     <div class="container">
         <div class="row">
 
             <?php require_once('public/includes/menuLeft.php'); ?>
 
-            <div class="col-md-9">
+            <div class="col-md-9" id="dataSearch">
                 <div class="panel panel-default">
 
                     <div class="panel-heading" style="background-color:#337AB7; color:white;">
@@ -57,21 +58,21 @@ $paperHTML = $loaitins['paperHTML']; // string
 
                     <?php foreach ($tins as $tin): ?>
                     
-                    <div class="row-item row">
+                    <div class="row-item row" >
                     
                         <div class="col-md-3">
                         
-                            <a href="chitiet.php?idTin=<?php echo $tin['id'] ?>&loaitin=<?php echo $tin['TenKhongDau']?>">
+                            <a href="chitiet.php?loaitin=<?php echo $tin['TenKhongDau']?>&alias=<?php echo $tin['TieuDeKhongDau']?>&idTin=<?php echo $tin['id'] ?>">
                                 <br>
-                                <img width="200px" height="200px" class="img-responsive" src="public/image/tintuc/<?php echo $tin['Hinh'] ?>" alt="">
+                                <img width="200px" height="200px" class="img-responsive" src="public/image/tintuc/<?php echo $tin['Hinh'] ?>" alt="name image">
                             </a>
                         </div>
                          
 
-                        <div class="col-md-9">
+                        <div class="col-md-9" >
                             <h3><?php echo $tin['TieuDe'] ?></h3>
                             <p><?php echo $tin['TomTat'] ?></p>
-                            <a class="btn btn-primary" href="chitiet.php?idTin=<?php echo $tin['id'] ?>&loaitin=<?php echo $tin['TenKhongDau']?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+                            <a class="btn btn-primary" href="chitiet.php?loaitin=<?php echo $tin['TenKhongDau']?>&alias=<?php echo $tin['TieuDeKhongDau']?>&idTin=<?php echo $tin['id'] ?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
                         </div>
 
                       
@@ -83,7 +84,6 @@ $paperHTML = $loaitins['paperHTML']; // string
                     <div class="row text-center">
                         <?php echo $paperHTML ?> 
                     </div>
-
                 </div>
             </div> 
 
@@ -92,4 +92,46 @@ $paperHTML = $loaitins['paperHTML']; // string
     </div>
     <!-- end Page Content -->
 
-<?php require_once('public/includes/footer.php'); ?>
+    <!-- Footer -->
+    <hr>
+    <footer>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Copyright &copy; Your Website 5/2017 by Json </p>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
+
+    <!-- jQuery -->
+    <script src="public/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="public/js/bootstrap.min.js"></script>
+    <script src="public/js/my.js"></script>
+
+    <script>
+    
+        $(function() {
+            $('.demo').click(function(){
+                
+                var keyword = $('#txtSearch').val();
+                console.log(keyword);
+
+                $.post(
+                    'timkiem.php', 
+                    {tukhoa:keyword}, 
+                    function(data){
+                        //alert('try aleart');
+                        $('#dataSearch').html(data);
+                    }
+                );
+
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
+

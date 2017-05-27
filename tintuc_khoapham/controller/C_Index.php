@@ -97,6 +97,26 @@ class C_Index
 		return array('tinNoiBat' => $tinNoiBat);
 	}
 
+	function comment($id_user, $id_tin, $noidung)
+	{
+		$mIndex = new M_Index();
+
+		$comment = $mIndex->addComment($id_user, $id_tin, $noidung);
+
+		var_dump($comment);
+
+		header('Location:'.$_SERVER['HTTP_REFERER']);
+	}
+
+	function c_search($key)
+	{
+		$mIndex = new M_Index();
+
+		$tin = $mIndex->search($key);
+
+		return $tin;
+	}
+
 	
 
 	function run()

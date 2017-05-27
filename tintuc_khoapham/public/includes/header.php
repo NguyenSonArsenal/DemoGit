@@ -10,3 +10,5 @@
 <!-- Custom CSS -->
 <link href="public/css/shop-homepage.css" rel="stylesheet">
 <link href="public/css/my.css" rel="stylesheet">
+
+<?php session_start(); ?>

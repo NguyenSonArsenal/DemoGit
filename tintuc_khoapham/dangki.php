@@ -1,13 +1,11 @@
 <?php 
-session_start();
-
 require_once __DIR__ . '/vendor/autoload.php';
 
 use controller\C_Users;
 
 $c_user = new C_Users();
 
-if(isset($_POST['submit']))
+if(isset($_POST['dangki']))
 {
 	$name = $_POST['name'];
 	$email = $_POST['email'];
@@ -49,6 +47,9 @@ if(isset($_POST['submit']))
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
+            	<?php if (isset($_SESSION['error'])): ?>
+            		<div class="alert alert-danger"><?php echo $_SESSION['error'] ?></div>
+            	<?php endif ?>
                 <div class="panel panel-default">
 				  	<div class="panel-heading">Đăng ký tài khoản</div>
 				  	<div class="panel-body">
@@ -74,7 +75,7 @@ if(isset($_POST['submit']))
 							  	<input type="password" class="form-control" name="passwordAgain" aria-describedby="basic-addon1">
 							</div>
 							<br>
-							<button type="button" name="submit" class="btn btn-success">Đăng ký
+							<button type="submit" name="dangki" class="btn btn-success">Đăng ký
 							</button>
 
 				    	</form>

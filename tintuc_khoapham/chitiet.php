@@ -1,27 +1,3 @@
-<?php 
-
-require_once __DIR__ . '/vendor/autoload.php';
-
-use controller\C_Index;
-
-$c_index = new C_Index();
-$tinChiTiet = $c_index->tinChiTiet();
-
-$tin = $tinChiTiet['tinChiTiet'][0];
-$comment = $tinChiTiet['comment'];
-
-$relatedNews = $c_index->relatedNews();
-$relatedNew  = $relatedNews['relatedNews'];
-
-$tinNoiBats = $c_index->tinNoiBat();
-$tinNoiBat = $tinNoiBats['tinNoiBat'];
-
-
-//var_dump($tinNoiBat);
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +7,54 @@ $tinNoiBat = $tinNoiBats['tinNoiBat'];
     <title> Chi Tiet Tin</title>
 
 </head>
+
+
+
+<?php 
+
+//session_start();
+require_once __DIR__ . '/vendor/autoload.php';
+
+use controller\C_Index;
+
+$c_index = new C_Index();
+$tinChiTiet = $c_index->tinChiTiet();
+
+$tin = $tinChiTiet['tinChiTiet'][0];
+
+
+$comment = $tinChiTiet['comment'];
+
+$relatedNews = $c_index->relatedNews();
+$relatedNew  = $relatedNews['relatedNews'];
+
+$tinNoiBats = $c_index->tinNoiBat();
+$tinNoiBat = $tinNoiBats['tinNoiBat'];
+
+if(isset($_POST['binhluan']))
+{
+    if(isset($_SESSION['id_user']))
+    {
+        echo 123;
+        $id_user = $_SESSION['id_user'];
+        echo $id_user ;
+        $id_tin  = $_POST['id_tin'];
+        $noidung = $_POST['noidung'];
+
+        $comment = $c_index->comment($id_user, $id_tin, $noidung);
+    } 
+    else {
+        $_SESSION['chua_dang_nhap'] = "Vui lòng đăng nhập để thêm bình luận";
+    }
+}
+
+
+//var_dump($tinNoiBat);
+
+?>
+
+
+
 
 <body>
 
@@ -70,13 +94,18 @@ $tinNoiBat = $tinNoiBats['tinNoiBat'];
                 <!-- Blog Comments -->
 
                 <!-- Comments Form -->
+                <?php if (isset($_SESSION['chua_dang_nhap'])): ?>
+                    <div class="alert-danger alert"><?php echo $_SESSION['chua_dang_nhap']; ?></div>
+                <?php endif ?>
+
                 <div class="well">
                     <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
-                    <form role="form">
+                    <form role="form" action="" method="POST">
+                        <input type="hidden" name="id_tin" value="<?php echo $tin['id'] ?>">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" rows="3" name="noidung"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Gửi</button>
+                        <button type="submit" name="binhluan" class="btn btn-primary">Gửi</button>
                     </form>
                 </div>
 
@@ -112,12 +141,12 @@ $tinNoiBat = $tinNoiBats['tinNoiBat'];
                             <?php //var_dump($rlt);die; ?>
                             <div class="row" style="margin-top: 10px;">
                                 <div class="col-md-5">
-                                    <a href="chitiet.php?idTin=<?php echo $rlt['id']?>&loaitin=<?php echo $rlt['TenKhongDau'] ?>">
+                                    <a href="chitiet.php?loaitin=<?php echo $rlt['TenKhongDau']?>&alias=<?php echo $rlt['TieuDeKhongDau'] ?>&idTin=<?php echo $rlt['id']?>">
                                         <img class="img-responsive" src="public/image/tintuc/<?php echo $rlt['Hinh'] ?>" alt="name image">
                                     </a>
                                 </div>
                                 <div class="col-md-7">
-                                    <a href="chitiet.php?idTin=<?php echo $rlt['id']?>&loaitin=<?php echo $rlt['TenKhongDau'] ?>""><b><?php echo $rlt['TieuDe'] ?></b></a>
+                                    <a href="chitiet.php?loaitin=<?php echo $rlt['TenKhongDau']?>&alias=<?php echo $rlt['TieuDeKhongDau'] ?>&idTin=<?php echo $rlt['id']?>"><b><?php echo $rlt['TieuDe'] ?></b></a>
                                 </div>
                                 <p><?php //echo $rlt['TomTat'] ?></p>
                                 <div class="break"></div>
@@ -136,12 +165,12 @@ $tinNoiBat = $tinNoiBats['tinNoiBat'];
                                 
                             
                             <div class="col-md-5">
-                                <a href="chitiet.php?idTin=<?php echo $tnb['id']?>&loaitin=<?php echo $tnb['TenKhongDau'] ?>">
-                                    <img class="img-responsive" src="public/image/tintuc/<?php echo $tnb['Hinh'] ?>" alt="">
+                                <a href="chitiet.php?loaitin=<?php echo $tnb['TenKhongDau'] ?>&alias=<?php echo $tnb['TieuDeKhongDau'] ?>&idTin=<?php echo $tnb['id']?>">
+                                    <img class="img-responsive" src="public/image/tintuc/<?php echo $tnb['Hinh'] ?>" alt="name image">
                                 </a>
                             </div>
                             <div class="col-md-7">
-                                <a href="#"><b><?php echo $tnb['TieuDe'] ?></b></a>
+                                <a href="chitiet.php?loaitin=<?php echo $tnb['TenKhongDau'] ?>&alias=<?php echo $tnb['TieuDeKhongDau'] ?>&idTin=<?php echo $tnb['id']?>"><b><?php echo $tnb['TieuDe'] ?></b></a>
                             </div>
                             <div class="break"></div>
                             <?php //endforeach ?>

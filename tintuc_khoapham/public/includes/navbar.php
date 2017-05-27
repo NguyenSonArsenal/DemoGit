@@ -14,37 +14,43 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="gioithieu.html">Giới thiệu</a>
+                    <a href="/gioithieu.php">Giới thiệu</a>
                 </li>
                 <li>
-                    <a href="lienhe.html">Liên hệ</a>
+                    <a href="/lienhe.php">Liên hệ</a>
                 </li>
             </ul>
 
             <form class="navbar-form navbar-left" role="search">
 		        <div class="form-group">
-		          <input type="text" class="form-control" placeholder="Search">
+		          <input type="text" id="txtSearch" class="form-control" placeholder="Search">
 		        </div>
-		        <button type="submit" class="btn btn-default">Submit</button>
+		        <button type="button" id="btnSearch" class="btn btn-default demo">Tìm kiếm</button>
 		    </form>
 
 		    <ul class="nav navbar-nav pull-right">
-                <li>
-                    <a href="/dangki.php">Đăng ký</a>
-                </li>
-                <li>
-                    <a href="dangnhap.html">Đăng nhập</a>
-                </li>
-                <li>
-                	<a>
-                		<span class ="glyphicon glyphicon-user"></span>
-                		Hương Hương
-                	</a>
-                </li>
 
-                <li>
-                	<a href="#">Đăng xuất</a>
-                </li>
+                <?php if (isset($_SESSION['name_user'])): ?>
+                    <li>
+                        <a>
+                            <span class ="glyphicon glyphicon-user"></span>
+                            <?php echo $_SESSION['name_user'] ?>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/dangxuat.php">Đăng xuất</a>
+                    </li>
+                <?php endif ?>
+
+                <?php if (!isset($_SESSION['name_user'])): ?>
+                    <li>
+                        <a href="/dangki.php">Đăng ký</a>
+                    </li>
+                    <li>
+                        <a href="/dangnhap.php">Đăng nhập</a>
+                    </li>
+                <?php endif ?>
 
             </ul>
         </div>

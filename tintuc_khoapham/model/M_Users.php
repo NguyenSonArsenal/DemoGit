@@ -25,6 +25,17 @@ class M_Users extends Database
 			return false;
 		}
 
+	}
+
+	function dangNhap($email, $md5_password)
+	{
+		$conn = self::connect();
+
+		$sql = "SELECT * FROM users WHERE email = '$email' AND password = '$md5_password' ";
+
+		$result = $conn->query($sql);
+
+		return $arrayUser = mysqli_fetch_all($result,MYSQLI_ASSOC);
 
 	}
 

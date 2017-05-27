@@ -109,8 +109,10 @@ class M_Index extends Database
 	{
 		$conn = self::connect();
 
-		$sql = "SELECT tt.*, lt.TenKhongDau as TenKhongDau, lt.id as idLoaiTin FROM tintuc tt INNER JOIN loaitin lt ON lt.id = tt.idLoaiTin
-				WHERE tt.NoiBat = 1 limit 0,5";
+		$sql = "SELECT tt.*, lt.TenKhongDau as TenKhongDau 
+				FROM tintuc tt INNER JOIN loaitin lt ON lt.id = tt.idLoaiTin
+				WHERE tt.NoiBat = 1 
+				limit 0,5";
 
 		$result = $conn->query($sql);
 
@@ -118,6 +120,33 @@ class M_Index extends Database
 
 		return $arrayTinNoiBat;
 	}
+
+	function addComment($id_user, $id_tin, $noidung)
+	{
+		$conn = self::connect();
+
+		$sql = "INSERT INTO comment (idUser, idTinTuc, NoiDung, created_at) VALUES ($id_user, $id_tin, $noidung, now()) ";
+
+		return $result = $conn->query($sql);
+
+	}
+
+
+	function search($key)
+	{
+		$conn = self::connect();
+
+		$sql = "SELECT tt.*, lt.TenKhongDau as TenKhongDau 
+				FROM tintuc tt INNER JOIN loaitin lt ON tt.idLoaiTin = lt.id
+				WHERE tt.TieuDe like '%$key%' or tt.TomTat like '%$key%' ";
+
+		$result = $conn->query($sql);
+
+		$arraySearch = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+		return $arraySearch;
+	}
+
 
 
 
