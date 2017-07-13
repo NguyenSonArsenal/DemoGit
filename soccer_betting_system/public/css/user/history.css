@@ -1,0 +1,18 @@
+.wrapper .title {
+  margin-bottom: 50px; }
+.wrapper .content_betting .table {
+  font-size: 14px; }
+  .wrapper .content_betting .table .thead .tr .align_middle {
+    vertical-align: middle;
+    font-weight: bold;
+    width: 100px; }
+  .wrapper .content_betting .table .tbody .tr .td .bet {
+    display: inline-block; }
+  .wrapper .content_betting .table .tbody .tr .td .rate {
+    display: inline-block; }
+    .wrapper .content_betting .table .tbody .tr .td .rate .rate_bet {
+      font-weight: bold;
+      color: #ccc;
+      font-size: 15px; }
+
+/*# sourceMappingURL=history.css.map */

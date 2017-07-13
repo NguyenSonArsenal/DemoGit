@@ -1,0 +1,46 @@
+.wrapper{
+	//border:1px solid red;
+	.title{
+		margin-bottom: 50px;
+	}
+	.content_betting{
+
+		.table{
+			font-size:14px;
+			.thead{
+				.tr{
+					.align_middle{
+						vertical-align: middle; 
+						font-weight: bold;
+						width:100px;
+					}
+				}
+					
+			}
+			.tbody{
+				.tr{
+					.td{
+						//display: inline-flex;
+						.bet{
+							//border:1px solid;
+							display:inline-block;
+						}
+						.rate{
+							//border:1px solid red;
+							display:inline-block;
+							.rate_bet{
+								// border: 1px solid #ccc;
+							 //    border-radius: 5px;
+							 //    padding: 5px;
+							 //    background: #ccc;
+								font-weight:bold;
+								color:#ccc;
+								font-size:15px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

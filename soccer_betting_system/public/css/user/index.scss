@@ -1,0 +1,51 @@
+.wrapper{
+	//border:1px solid red;
+	.title{
+		margin-bottom: 50px;
+	}
+	.content_betting{
+
+		.table{
+			font-size:14px;
+			.thead{
+				.tr{
+					.align_middle{
+						vertical-align: middle; 
+						font-weight: bold;
+						width:50px;
+					}
+				}
+					
+			}
+			.tbody{
+				.tr{
+					.input-group{
+						//border:1px solid red;
+						.input-group-btn{
+							.btn-secondary{
+								width:35px;	
+								.left{
+									text-align:left;
+									display:inline-block;
+								}
+							}
+							.btn-not-score{
+								border:1px solid #DDDDDD;
+								border-radius:3px;
+								width:50px;	
+							}
+						}
+					}
+
+					.width30px{
+						width:100px;
+					}
+					.width10px{
+						width:30px;
+					}
+
+				}
+			}
+		}
+	}
+}

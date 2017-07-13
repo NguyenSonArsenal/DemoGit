@@ -1,0 +1,31 @@
+.wrapper .title {
+  margin-bottom: 50px;
+}
+.wrapper .content_betting .table {
+  font-size: 14px;
+}
+.wrapper .content_betting .table .thead .tr .align_middle {
+  vertical-align: middle;
+  font-weight: bold;
+  width: 50px;
+}
+.wrapper .content_betting .table .tbody .tr .input-group .input-group-btn .btn-secondary {
+  width: 35px;
+}
+.wrapper .content_betting .table .tbody .tr .input-group .input-group-btn .btn-secondary .left {
+  text-align: left;
+  display: inline-block;
+}
+.wrapper .content_betting .table .tbody .tr .input-group .input-group-btn .btn-not-score {
+  border: 1px solid #DDDDDD;
+  border-radius: 3px;
+  width: 50px;
+}
+.wrapper .content_betting .table .tbody .tr .width30px {
+  width: 100px;
+}
+.wrapper .content_betting .table .tbody .tr .width10px {
+  width: 30px;
+}
+
+/*# sourceMappingURL=index.css.map */

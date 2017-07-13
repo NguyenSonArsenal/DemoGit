@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAKG,uCAAQ;EACP,UAAU,EAAC,IAAI;AAEhB,yCAAU;EACT,SAAS,EAAE,IAAI;AAGhB,sCAAO;EACN,UAAU,EAAC,IAAI;EACf,KAAK,EAAE,GAAG;AAEX,yCAAU;EACT,aAAa,EAAC,IAAI;EAClB,KAAK,EAAE,GAAG",
+"sources": ["betting.scss"],
+"names": [],
+"file": "betting.css"
+}
